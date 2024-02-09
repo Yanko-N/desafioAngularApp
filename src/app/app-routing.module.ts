@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IndexComponent } from './index/index/index.component';
 
-const routes: Routes = [];
+//lazy routing
+const routes: Routes = [
+  { path: '', pathMatch: 'full', component:IndexComponent },//making it the default one
+  { path: 'filmes', loadChildren: () => import('./filmes/filmes.module').then(m => m.FilmesModule) },
+  {path: 'index', loadChildren: () => import('./index/index.module').then(m => m.IndexModule)
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
